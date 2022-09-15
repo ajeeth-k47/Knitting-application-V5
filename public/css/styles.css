@@ -1,0 +1,355 @@
+#viewtab{
+  position:relative;
+  width:60%;
+  margin:2rem 20%;
+  padding: 2rem;
+  box-shadow: 0 2px 0rgba(0, 0, 0, 0.05), 0 5px 20px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: all 100ms ease-in-out;
+  
+}
+
+.back{
+  text-decoration: none;
+  color: white;
+}
+
+.FixedHeader{
+  overflow-y: auto;
+  height:600px;
+
+}
+
+.FixedHeader thead th{
+  position: sticky;
+  top:0;
+  background-color: grey;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width:100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: grey;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: white;
+}
+
+body{
+  background-color: grey;
+}
+
+.mapping-button{
+  margin-top: 5px;
+}
+
+input[type=search]{
+  max-width:30%;
+  position:relative;
+  margin-left: 70%;
+}
+
+//--------------------------------------------------------------------------------------------
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background-color: #263b50;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+  overflow-y: auto;
+}
+.new {
+  background: #0f5477;
+  color: black;
+}
+.nav a,
+.dropbtn {
+  padding-left: 13px;
+  text-decoration: none;
+  color: #eee;
+  display: block;
+  border: none;
+  background: #28576e;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+}
+.dropbtn:hover {
+  color: #00060c;
+  background: #f8f9fa;
+}
+
+.container {
+  display: none;
+  color: white;
+  background: #043852;
+  color: rgb(248, 248, 252);
+  padding-left: 10px;
+}
+.sidebar.open {
+  width: 250px;
+}
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name {
+  opacity: 1;
+}
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  box-shadow: 0 5px 10px #28576e;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip {
+  display: none;
+}
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: #28576e;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar li a:hover {
+  background: #fff;
+}
+.sidebar li a .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+  transition: all 0.5s ease;
+  color: #11101d;
+}
+.sidebar li i {
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+}
+.sidebar li.profile {
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .job {
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job {
+  font-size: 12px;
+}
+.sidebar.open ~ .home-section {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+@media (max-width: 420px) {
+  .sidebar li .tooltip {
+    display: none;
+  }
+}
+.fa-icon {
+  padding-right: 20px;
+}
+
+
+/*---------------------------Card image style------------------------------*/
+
+.cardimg {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 20%;
+  margin-left:45%;
+  margin-top:4%;
+}
+
+.cardimg:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.imgcontainer {
+  padding: 2px 16px;
+  background-color:white;
+}
+
+
+/*----------------------Manage-tab---------------------*/
+
+.manage-tab{
+text-align: center;
+  max-width: 20rem;
+  margin:2rem  2rem 0px;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05), 0 5px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 100ms ease-in-out;
+  display: inline-block;
+}
+
+
+@media (max-width: 1489px) {
+  .increasedhomesize {
+    margin-left: 24rem;
+  }
+}
+
+
+dd {
+  font-size: 92.5%;
+  margin-left: 0;
+  padding: 1rem;
+}
+
+
+
+dt span{
+    color: #0aa1dd;
+    line-height: 1;
+    padding: 5% 0%;
+    text-align: center;
+    font-weight: bold;
+}
+
+button.btn-success a{
+  text-decoration: none;
+  color:white;
+}
+
+
+div.statusdisplayer span{
+  margin-right: 10px;
+}
+
+
+/* ----------------Billing Styles------------------------*/
+
+
+td p span{
+  font-weight: bold;
+}
+
+.billing-calculationtable{
+   border:1px solid grey;
+}
+
+.billing-calculationtable td{
+  border:1px solid black;
+  padding:5px;
+}

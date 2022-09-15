@@ -1,0 +1,56 @@
+<div id="viewtab">
+
+     <h3>Dia Master</h3>
+
+     <form method="POST" action="/api/v1/master/dia">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Dia</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="number" class="form-control" name="dia" placeholder="enter dia" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Dia</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+
+         <form method="POST" action="/api/v1/master/search">
+
+          <input type="hidden" name="page" value="diamaster" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+         </form>
+
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Dia</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+
+      <% dias.forEach(function(dia,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= dia.Dia%></td>
+          <td><%= dia.Status%></td>
+       </tr>
+     <% }) %>
+
+    </tbody>
+
+    </table>
+
+    </div>

@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+     <h3>Gauge Master</h3>
+
+     <form method="POST" action="/api/v1/master/gauge">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Gauge</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="number" class="form-control" name="gauge" placeholder="enter Gauge" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Gauge</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="gaugemaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Gauge</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(gauges!=''){ %>
+      <% gauges.forEach(function(gauge,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= gauge.Gauge%></td>
+          <td><%= gauge.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+    </tbody>
+
+    </table>
+
+    </div>

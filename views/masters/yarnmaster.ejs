@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+     <h3>Yarn Count Master</h3>
+
+     <form method="POST" action="/api/v1/master/yarn">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Yarn Count</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="yarn" placeholder="enter yarn count" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Yarn Count</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="yarnmaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Yarn Count</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(yarns!=''){ %>
+      <% yarns.forEach(function(yarn,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= yarn.YarnCount%></td>
+          <td><%= yarn.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+    </tbody>
+
+    </table>
+
+    </div>

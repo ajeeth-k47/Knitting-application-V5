@@ -1,0 +1,83 @@
+<div id="viewtab">
+
+    <h3>Add Roll Details</h3>
+
+    <br />
+
+    <form method="POST" action="/api/v1/order/updateProgram">
+
+     <input type="hidden" name="orderNumber" value="<%= Orderno%>" />
+
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="prgno">Program No</label>
+        </div>
+        <div class="col-lg-7">
+         <input class="form-control" type="text" name="programid" value="<%= Programno%>" required />
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="dcno"> Design No</label>
+        </div>
+        <div class="col-lg-7">
+         <input class="form-control" type="text" name="dcno" value="<%= Designno%>" required />
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="rollwgt">Total Weight</label>
+        </div>
+        <div class="col-lg-7">
+          <input class="form-control" type="number" name="rollwgt" value="" max="<%= Balance%>" placeholder="Enter max <%= Balance%>" required />
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="rollwgt">Total Rolls</label>
+        </div>
+        <div class="col-lg-7">
+          <input class="form-control" type="number" name="totalRolls" value=""  placeholder="Enter no of rolls" required />
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="rolldate">Rolls Produced Date</label>
+        </div>
+        <div class="col-lg-7">
+         <input class="form-control" type="date" name="rolldate" value="" required />
+        </div>
+
+      </div>
+      <br />
+      
+      <div class="row">
+
+
+         <div class="col-lg-3">
+          <input type="submit" class="btn  btn-info" name="" value="Save" />
+         </div>
+
+
+    </form>
+
+    <div class="col-lg-7">
+         <button class="btn  btn-info"><a class="back" style="text-decoration:none;color:white;" href="/api/v1/order/programlist">Back</a></button>
+    </div>
+
+ </div>
+
+</div>

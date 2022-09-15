@@ -1,0 +1,115 @@
+<div id="viewtab" style="width:75%;">
+
+    <h3>Orders</h3>
+        <br />
+        <form method="POST" action="/api/v1/order/createorder">
+        <button class="btn btn-info" type="submit" name="button">+Create New Order</button>
+        </form>
+        <br />
+        <br />
+        <form method="POST" action="/api/v1/order/searchbydate">
+          <input type="hidden" name="page" value="orderlist" />
+          <div class="row">
+            <div class="col-md-3">
+              <label for="date"><b>Supplier</b></label>
+              <select name="suplier" class="form-control" required>
+                <% suppliers.forEach(function(supplier,index){ %>
+                   <option><%= supplier.Name%></option>
+                <% }) %>
+               </select>
+            </div>
+            <div class="col-md-3">
+              <label for="shift"><b>OrderDate</b></label>
+              <input class="form-control" type="date" name="fromdate" value="" required pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-3 mapping-button">
+              <label for="shift"></label>
+              <input class="form-control" type="date" name="todate" value="" required pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-3 mapping-button">
+              <br />
+              <input type="submit" class="btn btn-info" name="" value="Show Details" />
+            </div>
+          </div>
+
+       </form>
+       <br />
+       <br />
+        <form method="POST" action="/api/v1/order/searchbysupplier">
+
+         <input type="hidden" name="page" value="orderlist" />
+         <input class="form-control me-2" name="orderlist" type="search" placeholder="Search by supplier..." aria-label="Search">
+
+        </form>
+
+  <div class="FixedHeader">
+
+    <table class="styled-table">
+
+    <thead>
+        <tr>
+            <th>Seq no</th>
+            <th>Order No</th>
+            <th>Company Name</th>
+            <th>Order Date</th>
+            <th>Supplier</th>
+            <th>Yarn Count| Mill| Colors| Weight</th>
+            <th>Yarn Weight</th>
+            <th>Balance Weight</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <% if(orders!=''){ %>
+        <% orders.forEach(function(order,index) { %>
+        <% const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const orderDate = new Date(order.orderDate);
+        const neworderDate = orderDate.getDate()+"-"+months[(orderDate.getMonth())]+"-"+orderDate.getFullYear();%>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= order.orderNo%></td>
+            <td><%= order.company%></td>
+            <td><%= neworderDate%></td>
+            <td><%= order.supplier%></td>
+            <td>
+            <% order.yarnCount.forEach(function(yarns,index){%>
+              <span><%= yarns.yarn%>|<%=yarns.mill%>|<%= yarns.color%>|<%= yarns.weight%></span> 
+            <% }) %> 
+          </td>
+            <td><%= order.yarnWeight%></td>
+            <td><%= order.balanceWeight%></td>
+
+            <% if(order.status == 'Output Started'){%>
+            <td style="background-color:rgba(255,217,0,.3);"><%= order.status%></td>
+            <%}%>
+
+            <% if(order.status == 'Output Completed'){%>
+              <td style="background-color:rgb(143, 226, 169) ;"><%= order.status%></td>
+            <%}%>
+
+            <% if(order.status != 'Output Started' && order.status != 'Output Completed'){%>
+              <td><%= order.status%></td>
+            <%}%>
+
+            <td>
+              <form method="POST" action="/api/v1/order/addorderprogram">
+                <input type="hidden" name="orderNumber" value="<%= order.orderNo%>" />
+                <button class="btn-info" type="submit" title="add yarn/program"><i class='far fa-plus'></i></button>
+                <button class="btn-danger" type="submit" title="return yarn" formaction="/api/v1/order/returnYarnPage"><i class='fas fa-undo'></i></button>
+                <button class="btn-dark" type="submit" title="view timeline" formaction="/api/v1/order/activity"><i class='far fa-clock'></i></button>
+                <% if(user == 'Dinesh'){%>
+                <button class="btn-primary" type="submit" title="delete order" formaction="/api/v1/order/deleteOrder"><i class="fal fa-trash-alt"></i></button>         
+                <%}%>
+              </form>
+             </td>
+         </tr>
+       <% }) %>
+      <% } %>
+   </tbody>
+
+   </table>
+
+   </div>
+</div>

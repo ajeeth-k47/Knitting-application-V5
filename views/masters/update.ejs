@@ -1,0 +1,171 @@
+<div id="viewtab">
+
+     <h3>Edit <%= name%> Info</h3>
+
+     <br />
+
+     <form method="POST" action="/api/v1/master/update<%= name %>">
+       <input type="hidden" name="updatedforid" value="<%= detail.id%>" />
+       <input type="hidden" name="updatedforname" value="<%= detail.Name%>" />
+
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name"><%= name%> Name</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="name" value="<%= detail.Name%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Address Line#1</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="address1" value="<%= detail.Address1%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Address Line#2</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="address2" value="<%= detail.Address2%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Country</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type="text" name="country" value="<%= detail.Country%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">State</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="state" value="<%= detail.State%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">City</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="city" value="<%= detail.City%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Pin Code</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="number" name="pin" value="<%= detail.Pincode%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Primary Phone</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="phone" value="<%= detail.PhoneNo%>" />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Mobile No</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type=number name="mobile" value="<%= detail.MobileNo%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Primary Email</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="email" value="<%= detail.Email%>" />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Website URL</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="website" value="<%= detail.Website%>" />
+         </div>
+
+       </div>
+         <br />
+
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">GSTIN</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="gst" value="<%= detail.GSTNo%>" />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">PAN Card</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="pan" value="<%= detail.PANNo%>" />
+         </div>
+
+       </div>
+
+       <br />
+
+       <div class="row">
+
+          <div class="col-lg-3">
+            <input type="submit" class="btn btn-lg btn-info" name="" value="Update" />
+          </div>
+
+     </form>
+
+     <div class="col-lg-7">
+          <button class="btn btn-lg btn-info back"><a class="back"  href="/api/v1/master/<%= name %>">Back</a></button>
+     </div>
+
+  </div>
+
+</div>

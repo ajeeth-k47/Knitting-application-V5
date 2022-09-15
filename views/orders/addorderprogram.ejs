@@ -1,0 +1,189 @@
+<div id="viewtab" style="width:75%;">
+
+    <h3>Add Program</h3>
+    <br />
+      <div>
+          <button class="btn btn-info"><a href="/api/v1/order/orderlist" style="text-decoration: none;color:white;">Go Back</a></button>
+      </div>
+    <table class="styled-table">
+
+      <thead>
+          <tr>
+              <th>Seq no</th>
+              <th>Order No</th>
+              <th>Company Name</th>
+              <th>Order Date</th>
+              <th>Supplier</th>
+              <th>Yarn Count| Mill| Colors| Weight</th>
+              <th>Yarn Weight</th>
+              <th>Balance Weight</th>
+   
+          </tr>
+      </thead>
+      <tbody>
+    <% choosenOrders.forEach(function(order,index) { %>
+      <%const newOrderDate = (order.orderDate).getDate()+"-"+((order.orderDate).getMonth()+1)+"-"+(order.orderDate).getFullYear(); %>
+      <tr>
+         <td><%= index+1%></td>
+         <td><%= order.orderNo%></td>
+         <td><%= order.company%></td>
+         <td><%= newOrderDate%></td>
+         <td><%= order.supplier%></td>
+         <form method="POST" action="/api/v1/order/addyarn">
+         <td>
+         <% order.yarnCount.forEach(function(yarns,index){%>
+           <p><%= yarns.yarn%>|<%=yarns.mill%>|<%= yarns.color%>|<%= yarns.weight%></p>
+         <% }) %> 
+         <input type="hidden" name="orderNum" value="<%= order.orderNo %>" />
+         <button class="btn" style="background-color:#8479E1;color:white;" type="submit"><i class='far fa-plus'></i></button>
+         <button class="btn" style="background-color:#8479E1;color:white;" type="submit" formaction="/api/v1/order/editdeleteYarn"><i class="far fa-eye"></i></button>
+        </td>
+         </form>
+         <td><%= order.yarnWeight%></td>
+         <td><%= order.balanceWeight%></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  </table>
+  <h5>Enter Program Detail</h5>
+    <form method="POST" action="/api/v1/order/addProgram">
+      <input type="hidden" name="programOrderNum" value="<%= choosenOrders[0].orderNo %>" />
+      <input type="hidden" name="supplier" value="<%= choosenOrders[0].supplier %>" />
+        <table class="styled-table">
+          <thead>
+             <tr>
+              <th>Fabric Type</th>
+              <th>Dia</th>
+              <th>Gauge</th>
+              <th>Loop Length</th>
+              <th>DC.NO</th>
+              <th>Program</th>
+             </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>  
+              <select name="fabricType" class="form-control" required>
+                <% fabrics.forEach(function(fabric,index){ %>
+                   <option><%= fabric.FabricType%></option>
+                <% }) %>
+              </select>
+            </td>
+
+            <td>
+                <select name="dia" class="form-control" required>
+                    <% dias.forEach(function(dia,index){ %>
+                       <option><%= dia.Dia%></option>
+                    <% }) %>
+                </select>
+            </td>
+
+            <td>  
+               <select name="gauge" class="form-control" required>
+                  <% gauges.forEach(function(gauge,index){ %>
+                     <option><%= gauge.Gauge%></option>
+                  <% }) %>
+                </select>
+            </td>
+
+            <td>
+                <input type="text" class="form-control" name="looplength" placeholder="Enter length " required>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="dc" placeholder="Enter Dc " required>
+            </td>
+            <td>
+              <select name="gsm" class="form-control" required>
+                <option>Needle drop</option>
+                <option>tabular</option>
+             </select>
+            </td>
+            
+          </tr>
+         </tbody>
+       </table>
+
+       <table class="styled-table">
+        <thead>
+           <tr>
+            <th>weight</th>
+            <th>Target Date</th>
+            <th>Price</th>
+            <th>Tax</th>
+            <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+        <tr>
+          <td>
+            <input type="number" class="form-control" name="weight" placeholder="Enter Weight" required>
+          </td>
+
+          <td>
+            <input type="date" class="form-control" name="targetdate" placeholder="Enter date" required>
+          </td>
+          
+          <td>
+            <input type="number" class="form-control" name="price" placeholder="Enter price" required>
+          </td>
+          
+          <td>  
+            <select name="tax" class="form-control" required>
+               <% taxs.forEach(function(tax,index){ %>
+                  <option><%= tax.TaxName%></option>
+               <% }) %>
+             </select>
+         </td>
+
+          <td><button class="btn btn-primary" type="submit" name="button">+ Add</button></td>
+        </tr>
+       </tbody>
+     </table>
+    </form>
+  <% if(choosenProgram[0]!=null){%>
+    <h5>View Added Programs</h5>
+    <table class="styled-table">
+      <thead>
+         <tr>
+          <th>Program No</th>
+          <th>Program Date</th>
+          <th>Fabric Type</th>
+          <th>Dia</th>
+          <th>Gauge</th>
+          <th>Loop Length</th>
+          <th>Dc.No</th>
+          <th>weight</th>
+          <th>Target Date</th>
+          <th>Price</th>
+          <th>Tax</th>
+          <th>Action</th>
+         </tr>
+     </thead>
+      <tbody>
+        <% choosenProgram.forEach(function(program,index){%>
+          <%
+          const newProgramDate = (program.programDate).getDate()+"-"+((program.programDate).getMonth()+1)+"-"+(program.programDate).getFullYear(); %>
+          <tr>
+            <td><%= program.programNo%></td>
+            <td><%= newProgramDate%></td>
+            <td><%= program.fabricType%></td>
+            <td><%= program.dia%></td>
+            <td><%= program.gauge%></td>
+            <td><%= program.loopLength%></td>
+            <td><%= program.designNo%></td>
+            <td><%= program.Weight%></td>
+            <td><%= program.targetDate%></td>
+            <td><%= program.price%></td>
+            <td><%= program.tax%></td>
+            <td></td>
+          </tr>
+        <%})%>
+     </tbody>
+   </table>
+   <% } %>
+   
+   <div style="text-align: right;">
+      <button class="btn btn-info"><a href="/api/v1/order/programlist" style="text-decoration: none;color:white;">Go to programs</a></button>
+    </div>
+    
+    </div>

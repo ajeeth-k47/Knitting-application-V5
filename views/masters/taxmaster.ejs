@@ -1,0 +1,79 @@
+<div id="viewtab">
+
+  <script>
+    function TotalGST()
+    {
+        var x = document.getElementById("cgst").value;
+        var y = document.getElementById("sgst").value;
+        var z = document.getElementById("igst").value;
+        document.getElementById("totalGST").value = Number(x)+Number(y)+Number(z);
+    }
+  </script>
+     <h3>Tax Master</h3>
+
+     <form method="POST" action="/api/v1/master/tax">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Name</th>
+           <th>CGST</th>
+           <th>SGST</th>
+           <th>IGST</th>
+           <th>Total GST</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="tax" placeholder="Tax Name" required></td>
+         <td> <input type=number id="cgst" step=0.001 class="form-control" onkeyup="TotalGST()" name="cgst" placeholder="CGST" required></td>
+         <td> <input type=number id="sgst" step=0.001 class="form-control" onkeyup="TotalGST()" name="sgst" placeholder="SGST" required></td>
+         <td> <input type=number id="igst" step=0.001 class="form-control" onkeyup="TotalGST()" name="igst" placeholder="IGST" required></td>
+         <td> <input type=number id="totalGST" step=0.001 class="form-control" name="total" placeholder="Total GST" disabled></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Tax</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="taxmaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Tax Name</th>
+             <th>CGST</th>
+             <th>SGST</th>
+             <th>IGST</th>
+             <th>Total GST</th>
+             <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(taxs!=''){ %>
+      <% taxs.forEach(function(tax,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= tax.TaxName%></td>
+          <td><%= tax.CGST%></td>
+          <td><%= tax.SGST%></td>
+          <td><%= tax.IGST%></td>
+          <td><%= tax.Total%></td>
+          <td><%= tax.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+    </tbody>
+
+    </table>
+
+    </div>

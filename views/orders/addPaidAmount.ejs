@@ -1,0 +1,50 @@
+<div id="viewtab">
+
+    <h3>Add Paid Amount</h3>
+
+    <br />
+
+    <form method="POST" action="/api/v1/order/updatePaidBalance">
+
+     
+
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="BillNo">Bill No</label>
+        </div>
+        <div class="col-lg-7">
+         <input class="form-control" type="text" name="billnumber" value="<%= billNo%>" required />
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+
+        <div class="col-lg-3">
+         <label for="amount"> Paid Amount</label>
+        </div>
+        <div class="col-lg-7">
+            <input class="form-control" type="number" name="amountpaid"  max="<%= maxamount%>" placeholder="Enter the amount <%= maxamount%>" required />
+        </div>
+
+      </div>
+      <br />
+      
+      <div class="row">
+
+
+         <div class="col-lg-3">
+          <input type="submit" class="btn btn-info" name="" value="Save" />
+         </div>
+
+
+    </form>
+
+    <div class="col-lg-7">
+         <button class="btn btn-info"><a class="back" style="text-decoration: none;color:white;" href="/api/v1/order/paystatuslist">Back</a></button>
+    </div>
+
+ </div>
+
+</div>

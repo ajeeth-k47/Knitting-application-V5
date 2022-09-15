@@ -1,0 +1,31 @@
+{
+  "name": "knitting-project",
+  "version": "1.0.0",
+  "description": "Knitting management",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Ajeeth",
+  "license": "ISC",
+  "engines": {
+    "node": "12.18.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-sessions": "^1.0.6",
+    "mongodb": "^4.3.0",
+    "mongoose": "^6.1.5",
+    "node-localstorage": "^2.2.1",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {}
+}

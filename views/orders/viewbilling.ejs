@@ -1,0 +1,167 @@
+
+<div id="viewtab" style="width:75%;">
+
+<div class="row">
+    <div class="col-lg-10">
+        <button class="btn btn-warning"><a href="/api/v1/order/programlist" style="text-decoration: none;color:black;">Go Back</a></button>
+    </div>
+    <div class="col-lg-2">
+         <button class="btn btn-light" onclick="myprint()"><i class="fas fa-print"></i> Print</button>
+    </div>
+</div>
+
+
+ <form id="billing-form">
+
+    <h3 style="text-decoration: underline;text-align: center;font-family: ubuntu;">GST Invoice</h3>
+    <br />
+    <h6>Bill No: <%= billings[0].billNo%></h6>
+    <% 
+        let format=(billings[0].billDate).getDate()+"/"+((billings[0].billDate).getMonth()+1)+"/"+(billings[0].billDate).getFullYear(); %>
+    <h6>Bill Date: <%= format %></h6>
+    <br />
+    <table style="border:2px solid grey;width:100%;">
+        <tr>
+            <td style="border:2px solid grey;padding: 10px;">
+                <p>From</p>
+                <h5><%= deliveryFrom[0].Name%></h5>
+                <address>
+                    <%= deliveryFrom[0].Address1%>,<%= deliveryFrom[0].Address2%><br/>
+                    <%= deliveryFrom[0].City%><br />
+                    <%= deliveryFrom[0].State%> - <%= deliveryFrom[0].Pincode%>
+                </address>
+                <p>
+                    <span>GSTIN </span> :<%= deliveryFrom[0].GSTNo%><br/>
+                    <span>PAN </span> :<%= deliveryFrom[0].PANNo%><br/>
+                    <span>Email </span> :<%= deliveryFrom[0].Email%><br/>
+                    <span>Phone </span> :<%= deliveryFrom[0].PhoneNo%>
+                </p>
+            </td>
+            <td style="border:2px solid grey;margin-left: 5rem;padding: 10px;">
+                <p>To</p>
+                <h5><%= deliveryTo[0].Name%></h5>
+                <address>
+                    <%= deliveryTo[0].Address1%>,<%= deliveryTo[0].Address2%><br/>
+                    <%= deliveryTo[0].City%><br />
+                    <%= deliveryTo[0].State%> - <%= deliveryTo[0].Pincode%>
+                </address>
+                <p>
+                    <span>GSTIN </span> :<%= deliveryTo[0].GSTNo%><br/>
+                    <span>PAN </span> :<%= deliveryTo[0].PANNo%><br/>
+                    <span>Email </span> :<%= deliveryTo[0].Email%><br/>
+                    <span>Phone </span> :<%= deliveryTo[0].PhoneNo%>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <h6>Program No: <%= program[0].programNo%></h6>
+    <h6>DC No: <%= program[0].designNo%></h6>
+
+    <br />
+
+    <h6>Delivery Details</h6>
+    <table style="width:100%;">
+        <tr style="background-color: #e4e5e6 ;line-height: 45px;">
+            <th>Seq no</th>
+            <th>Delivery No</th>
+            <th>Delivery Date</th>
+            <th>Supplier</th>
+            <th>Weight</th>
+            <th>No of Rolls</th>
+            <th>Total Delivery Price</th>
+        </tr>
+
+        <tbody>
+            <% if(deliveries!=''){ %>
+              <% deliveries.forEach(function(delivery,index) { %>  
+      
+               <tr class="billing-calculationtable">
+                  <td><%= index+1%></td>
+                  <td><%= delivery.deliveryNo %></td>
+                  <td><%= (delivery.deliveryDate).toLocaleString('en-US', { timeZone: 'UTC' }) %></td>
+                  <td><%= delivery.supplier%></td>
+                  <td><%= delivery.weight%></td>
+                  <td><%= delivery.rollcount %></td>
+                  <td><%= delivery.totalPrice%></td>
+                </tr>
+                <% }) %>
+                <% } %>
+          </tbody>
+    </table>
+
+    <br />    
+
+   <table style="width:100%;">
+    <tr style="background-color: #e4e5e6 ;line-height: 45px;">
+        <th>#</th>
+        <th>Program No</th>
+        <th>Program Date</th>
+        <th>Supplier</th>
+        <th>Weight</th>
+        <th>No of Rolls</th>
+        <th>Price</th>
+        <th>SGST</th>
+        <th>CGST</th>
+        <th>IGST</th>
+        <th>Total Price</th>
+    </tr>
+    <tr class="billing-calculationtable">
+        <% let newPrgDate = (program[0].programDate).getDate()+"/"+((program[0].programDate).getMonth()+1)+"/"+(program[0].programDate).getFullYear(); 
+        %>
+        <td>1</td>
+        <td><%= program[0].programNo%></td>
+        <td><%= newPrgDate%></td>
+        <td><%= program[0].supplier%></td>
+        <td><%= program[0].Weight%></td>
+        <td><%= program[0].rolls%></td>
+        <td><span>&#8377</span><%= price%></td>
+        <td><span>&#8377</span><%= ServiceTax%></td>
+        <td><span>&#8377</span><%= ServiceTax%></td>
+        <td><%= program[0].IGST%></td>
+        <td><span>&#8377</span><%= TotalPrice%></td>
+    </tr>
+    <tr class="billing-calculationtable" style="font-weight:bold;">
+        <td colspan="6"></td>
+        <td><span>&#8377</span><%= price%></td>
+        <td><span>&#8377</span><%= ServiceTax%></td>
+        <td><span>&#8377</span><%= ServiceTax%></td>
+        <td></td>
+        <td><span>&#8377</span><%= TotalPrice%></td>
+    </tr>
+   </table>
+
+   <br />
+   
+   <h6>Invoice Total (in words): <%= str%>.</h6>
+   <br />
+   <br />
+
+   <table style="width:100%">
+      <td>
+         <p>Receiver Signature</p>
+         <br />
+         <br />
+         <h6>For <%= program[0].supplier%></h6>
+      </td>
+      <td style="text-align: right;">
+         <p>Authorized Signature</p>
+         <br />
+         <br />
+         <h6>For <%= deliveryFrom[0].Name%></h6>
+      </td>
+   </table>
+</form>
+
+<script>
+    function myprint(){
+        let printdata=document.getElementById('billing-form');
+        newwin = window.open("");
+            newwin.document.write(printdata.outerHTML);
+            newwin.print();
+            newwin.close();
+            return false;
+    }
+</script>
+</div>

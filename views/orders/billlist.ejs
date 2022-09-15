@@ -1,0 +1,80 @@
+<div id="viewtab" style="width:75%;">
+
+    <h3>Billed List</h3>
+    <br />
+    <br />
+
+    <% if(billings.length>1){%>
+     <form method="POST" action="/api/v1/order/searchbydate">
+      <input type="hidden" name="page" value="billinglist" />
+        <div class="row">
+          <div class="col-md-2">
+              <label for="bilingfrom"><b>BillingDate</b></label>
+              <input class="form-control" type="date" name="fromdate" value="" required  pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <label for="billingtill"></label>
+              <input class="form-control" type="date" name="todate" value="" required pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <br />
+              <input type="submit" class="btn btn-info" name="" value="Show Details" />
+            </div>
+          </div>
+
+       </form>
+    
+      
+       <br />
+       <br />
+        <form method="POST" action="/api/v1/order/searchbysupplier">
+
+          <input type="hidden" name="page" value="billinglist" />
+         <input class="form-control me-2" name="billinglist" type="search" placeholder="Search by supplier..." aria-label="Search">
+
+        </form>
+    <%}%>
+    
+    <table class="styled-table">
+
+    <thead>
+        <tr>
+            <th>Seq no</th>
+            <th>Program No</th>
+            <th>Billing No</th>
+            <th>Billing Date</th>
+            <th>Supplier</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <% if(billings!=''){ %>
+        <% billings.forEach(function(billing,index) { %>  
+          <% const newbillDate = (billing.billDate).getDate()+"-"+((billing.billDate).getMonth()+1)+"-"+(billing.billDate).getFullYear();%>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= billing.programNo%></td>
+            <td><%= billing.billNo %></td>
+            <td><%= newbillDate %></td>
+            <td><%= billing.supplier%></td> 
+            <td>
+              <form method="POST" action="/api/v1/order/viewbilling">
+                <input type="hidden" name="programId" value="<%= billing.programNo%>" />               
+                <input type="hidden" name="suppliername" value="<%= billing.supplier%>" />
+                <button class="btn-dark" type="submit" title="view bill" ><i class='fas fa-eye'></i></button>
+            </form>
+             </td>
+         </tr>
+         <% }) %>
+         <% } %>
+   </tbody>
+
+   </table>
+  
+   <div>
+    <button class="btn btn-info"><a href="/api/v1/order/programlist" style="color:white;text-decoration: none;">Back</a></button>
+  </div>
+  
+   </div>
+  

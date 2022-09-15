@@ -1,0 +1,97 @@
+<div id="viewtab">
+
+     <h3>Resource Management Colors</h3>
+    <% if(visibility==1){ %>
+     <form method="POST" action="/api/v1/master/color">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Name</th>
+           <th>Alt.Name</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="color" placeholder="enter color name" required></td>
+         <td> <input type="text" class="form-control" name="alternate" placeholder="enter Alternate name" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Color</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <%}%>
+
+    <% if(visibility==0){ %>
+     <form method="POST" action="/api/v1/master/updateColor">
+        <input type="hidden" class="form-control" name="updatedforcolor" value="<%= colors.Color%>" required></td>
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Name</th>
+           <th>Alt.Name</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="color" value="<%= colors.Color%>" required></td>
+         <td> <input type="text" class="form-control" name="alternate" value="<%= colors.Alternate%>" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">Update Color</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <%}%>
+
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="colormaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Name</th>
+             <th>Alt.Name</th>
+            <th>Status</th>
+            <th>Action</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(colors!='' && visibility == 1){ %>
+      <% colors.forEach(function(color,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= (color.Color).charAt(0).toUpperCase() + (color.Color).substr(1).toLowerCase() %></td>
+          <td><%= (color.Alternate).charAt(0).toUpperCase() + (color.Alternate).substr(1).toLowerCase() %></td>
+          <td><%= color.Status%></td>
+          <form method="POST" action="/api/v1/master/update">
+            <input type="hidden" name="mastername" value="Color" />
+            <input type="hidden" name="name" value="<%= color.Color%>" />
+            <td><button type="submit"><i class="fas fa-edit"></i></button></td>
+          </form>
+       </tr>
+     <% }) %>
+    <% } %>
+
+    <% if(visibility == 0){ %>
+      <td>1</td>
+      <td><%= (colors.Color).charAt(0).toUpperCase() + (colors.Color).substr(1).toLowerCase() %></td>
+      <td><%= (colors.Alternate).charAt(0).toUpperCase() + (colors.Alternate).substr(1).toLowerCase() %></td>
+      <td><%= colors.Status%></td>
+      <td> <i class="fas fa-edit"></i> </td>
+    <% } %>
+
+    </tbody>
+
+    </table>
+
+    </div>

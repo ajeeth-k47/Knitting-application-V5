@@ -1,0 +1,112 @@
+<div id="viewtab">
+
+    <h3>Create Orders</h3>
+    <br />
+    <form method="POST" action="/api/v1/order/neworder">
+        <div class="row">
+
+            <div class="col-lg-3">
+             <label for="order">Order No</label>
+            </div>
+            <div class="col-lg-7">
+             <label for="orderNo"><b><%= orderno%></b></label>
+            </div>
+
+            <input type="hidden" name="orderNumber" value="<%= orderno%>" />
+
+          </div>
+          <br/>
+          <div class="row">
+
+            <div class="col-lg-3">
+             <label for="orderDate">Order Date</label>
+            </div>
+            <div class="col-lg-7">
+             <input class="form-control" type="date" name="orderDate" value="" required  pattern="\d{4}-\d{2}-\d{2}"  />
+            </div>
+   
+          </div>
+          <br />
+          <div class="row">
+
+            <div class="col-lg-3">
+             <label for="supplier">Supplier</label>
+            </div>
+            <div class="col-lg-7">
+                <select name="supplier" class="form-control" required>
+                    <% supplierslist.forEach(function(supplier,index){ %>
+                       <option><%= supplier.Name%></option>
+                    <% }) %>
+                  </select>
+            </div>
+   
+          </div>
+          <br />
+          <div class="row">
+
+            <div class="col-lg-3">
+             <label for="company">Company</label>
+            </div>
+            <div class="col-lg-7">
+                <select name="company" class="form-control" required>
+                    <% companies.forEach(function(company,index){ %>
+                       <option><%= company.Name%></option>
+                    <% }) %>
+                  </select>
+            </div>
+   
+          </div>
+          <br />
+        <table class="styled-table">
+          <thead>
+             <tr>
+              <th>Yarn Count</th>
+              <th>Mill</th>
+              <th>Color</th>
+              <th>Weight</th>
+              <th>Action</th>
+             </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>  
+              <select name="yarncount" class="form-control" required>
+                <% yarncounts.forEach(function(yarncount,index){ %>
+                   <option><%= yarncount.YarnCount%></option>
+                <% }) %>
+              </select>
+            </td>
+
+            <td>
+                <select name="mill" class="form-control" required>
+                    <% mills.forEach(function(mill,index){ %>
+                       <option><%= mill.Mill%></option>
+                    <% }) %>
+                </select>
+            </td>
+
+            <td>  
+               <select name="colour" class="form-control" required>
+                  <% colors.forEach(function(color,index){ %>
+                     <option><%= color.Color%></option>
+                  <% }) %>
+                </select>
+            </td>
+
+            <td>
+                <input type="number" class="form-control" name="weight" placeholder="enter yarnweight" required>
+            </td>
+
+            <td><button class="btn btn-primary" type="submit" name="button" onclick="info()">+ Add</button></td>
+          </tr>
+         </tbody>
+       </table>
+    </form>
+
+    <script>
+      function info(){
+        alert('Order Created Successfully');
+      }
+    </script>
+
+    </div>

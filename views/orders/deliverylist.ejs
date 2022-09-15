@@ -1,0 +1,82 @@
+<div id="viewtab" style="width:75%;">
+
+    <h3>Delivered Goods</h3>
+    <br />
+    <br />
+
+    <% if(searchVisibility!=0){%>
+     <form method="POST" action="/api/v1/order/searchbydate">
+      <input type="hidden" name="page" value="deliverylist" />
+        <div class="row">
+          <div class="col-md-2">
+              <label for="deliveryfrom"><b>DeliveryDate</b></label>
+              <input class="form-control" type="date" name="fromdate" value="" required  pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <label for="deliverytill"></label>
+              <input class="form-control" type="date" name="todate" value="" required pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <br />
+              <input type="submit" class="btn btn-info" name="" value="Show Details" />
+            </div>
+          </div>
+
+       </form>
+       <br />
+       <br />
+        <form method="POST" action="/api/v1/order/searchbysupplier">
+
+         <input type="hidden" name="page" value="deliverylist" />
+         <input class="form-control me-2" name="deliverylist" type="search" placeholder="Search by supplier..." aria-label="Search">
+
+        </form>
+    <%}%>
+
+
+    <table class="styled-table">
+
+    <thead>
+        <tr>
+            <th>Seq no</th>
+            <th>Delivery No</th>
+            <th>Delivery Date</th>
+            <th>Supplier</th>
+            <th>Weight</th>
+            <th>No of Rolls</th>
+            <th>Total Delivery Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% if(deliveries!=''){ %>
+        <% deliveries.forEach(function(delivery,index) { %>  
+        <% const newdeliveryDate = (delivery.deliveryDate).getDate()+"-"+((delivery.deliveryDate).getMonth()+1)+"-"+(delivery.deliveryDate).getFullYear(); %>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= delivery.deliveryNo %></td>
+            <td><%= newdeliveryDate%></td>
+            <td><%= delivery.supplier%></td>
+            <td><%= delivery.weight%></td>
+            <td><%= delivery.rollcount %></td>
+            <td><%= delivery.totalPrice%></td>
+            
+            <td>
+              <form method="POST" action="/api/v1/order/viewDeliveryChalan">
+                <input type="hidden" name="programNumber" value="<%= delivery.programNo%>" />
+                <input type="hidden" name="deliveryNumber" value="<%= delivery.deliveryNo%>" />
+                <button class="btn-dark" type="submit" title="view deliverychalan"><i class='fas fa-eye'></i></button>
+            </form>
+             </td>
+         </tr>
+         <% }) %>
+         <% } %>
+   </tbody>
+
+   </table>
+  
+  <div>
+    <button class="btn btn-info"><a href="/api/v1/order/programlist" style="color:white;text-decoration: none;">Back</a></button>
+  </div>
+   </div>
+   

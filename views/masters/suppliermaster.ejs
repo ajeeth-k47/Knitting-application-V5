@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+     <h3>Supplier Master</h3>
+         <br />
+         <form method="POST" action="/api/v1/master/create">
+         <input type="hidden" name="mastername" value="Supplier" />
+         <button class="btn btn-info" type="submit" name="button">+Create New Supplier</button>
+         </form>
+         <br />
+         <br />
+         <form method="POST" action="/api/v1/master/search">
+
+          <input type="hidden" name="page" value="suppliermaster" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+         </form>
+
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Supplier Name</th>
+             <th>Address</th>
+             <th>Status</th>
+             <th>Action</th>
+         </tr>
+     </thead>
+
+     <tbody>
+
+       <% if(suppliers!=''){ %>
+        <% suppliers.forEach(function(supplier,index) { %>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= supplier.Name%></td>
+            <td><%= supplier.Address1+","+supplier.Address2+","+supplier.City+",-"+supplier.Pincode%></td>
+            <td>Active</td>
+            <form method="POST" action="/api/v1/master/update">
+              <input type="hidden" name="mastername" value="Supplier" />
+              <input type="hidden" name="id" value=<%= supplier._id%> />
+              <input type="hidden" name="name" value="<%= supplier.Name%>" />
+              <td><button type="submit"><i class="fas fa-edit"></i></button></td>
+            </form>
+         </tr>
+       <% }) %>
+      <% } %>
+
+    </tbody>
+
+    </table>
+
+    </div>

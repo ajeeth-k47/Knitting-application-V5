@@ -1,0 +1,115 @@
+
+<div id="viewtab" style="width:75%;">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <button class="btn btn-warning"><a href="/api/v1/order/programlist" style="text-decoration: none;color:black;">Go Back</a></button>
+        </div>
+        <div class="col-lg-2">
+             <button class="btn btn-light" onclick="myprint()"><i class="fas fa-print"></i> Print</button>
+        </div>
+    </div>
+    
+    
+     <form id="billing-form">
+    
+        <h3 style="text-decoration: underline;text-align: center;font-family: ubuntu;">Delivery Chalan</h3>
+        <br />
+        <h6>Program No: <%=program[0].programNo%></h6>
+        <h6>Delivery No: <%= deliveries[0].deliveryNo%></h6>
+        <% const newdeliveryDate = (deliveries[0].deliveryDate).getDate()+"/"+((deliveries[0].deliveryDate).getMonth()+1)+"/"+(deliveries[0].deliveryDate).getFullYear(); %>
+        <h6>Delivery Date: <%= newdeliveryDate%></h6>
+        <h6>DC No: <%=program[0].designNo%></h6>
+        <br />
+        <table style="border:2px solid grey;width:100%;">
+            <tr>
+                <td style="border:2px solid grey;padding: 10px;">
+                    <p>From</p>
+                    <h5><%= From[0].Name%></h5>
+                    <address>
+                        <%= From[0].Address1%>,<%= From[0].Address2%><br/>
+                        <%= From[0].City%><br />
+                        <%= From[0].State%> - <%= From[0].Pincode%>
+                    </address>
+                    <p>
+                        <span>GSTIN </span> :<%= From[0].GSTNo%><br/>
+                        <span>PAN </span> :<%= From[0].PANNo%><br/>
+                        <span>Email </span> :<%= From[0].Email%><br/>
+                        <span>Phone </span> :<%= From[0].PhoneNo%>
+                    </p>
+                </td>
+                <td style="border:2px solid grey;margin-left: 5rem;padding: 10px;">
+                    <p>To</p>
+                    <h5><%= To[0].Name%></h5>
+                    <address>
+                        <%= To[0].Address1%>,<%= To[0].Address2%><br/>
+                        <%= To[0].City%><br />
+                        <%= To[0].State%> - <%= To[0].Pincode%>
+                    </address>
+                    <p>
+                        <span>GSTIN </span> :<%= To[0].GSTNo%><br/>
+                        <span>PAN </span> :<%= To[0].PANNo%><br/>
+                        <span>Email </span> :<%= To[0].Email%><br/>
+                        <span>Phone </span> :<%= To[0].PhoneNo%>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    
+        <br />
+    
+        <h6>Delivery Details</h6>
+    
+        <br />    
+    
+       <table style="width:100%;">
+        <tr style="background-color: #e4e5e6 ;line-height: 45px;">
+            <th>#</th>
+            <th>Description</th>
+            <th>No of Rolls</th>
+            <th>Weight</th>
+        </tr>
+        <tr class="billing-calculationtable">
+            <% let newPrgDate = (program[0].programDate).getDate()+"/"+((program[0].programDate).getMonth()+1)+"/"+(program[0].programDate).getFullYear(); 
+            %>
+            <td>1</td>
+            <td><%= program[0].programNo%> | <%= newPrgDate%> | <%= program[0].fabricType%> | <%= program[0].dia %> Ø | <%= program[0].gauge%> G.G | <%= program[0].loopLength%> L.L | <%= program[0].gsm%></td>
+            <td><%= deliveries[0].rollcount%></td>
+            <td><%= deliveries[0].weight%></td>
+        </tr>
+       </table>
+    
+       <br />
+       
+       <br />
+       <h6>Vehicle Number :</h6>
+       <br />
+    
+       <table style="width:100%">
+          <td>
+             <p>Receiver Signature</p>
+             <br />
+             <br />
+             <h6>For <%= program[0].supplier%></h6>
+          </td>
+          <td style="text-align: right;">
+             <p>Authorized Signature</p>
+             <br />
+             <br />
+             <h6>For <%= From[0].Name%></h6>
+          </td>
+       </table>
+    </form>
+    
+    <script>
+        function myprint(){
+            let printdata=document.getElementById('billing-form');
+            newwin = window.open("");
+                newwin.document.write(printdata.outerHTML);
+                newwin.print();
+                newwin.close();
+                return false;
+        }
+    </script>
+    </div>
+    

@@ -1,0 +1,53 @@
+<div id="viewtab">
+
+    <h3>Edit Selected Yarn</h3>
+    <br />
+    <form method="POST" action="/api/v1/order/editSelectedYarn">
+      <br />
+      <div>
+
+        <div>
+         <label for="order">Order No : <b><%= orderno%></b></label>
+        </div>
+       
+        <input type="hidden" name="orderNumber" value="<%= orderno%>" />
+        <input type="hidden" name="indexNumber" value="<%= index%>" />
+        <input type="hidden" name="oldWeight" value="<%= selectedYarn.weight%>" />
+
+      </div>
+
+       
+        <table class="styled-table">
+          <thead>
+             <tr>
+              <th>Yarn Count</th>
+              <th>Mill</th>
+              <th>Color</th>
+              <th>Weight</th>
+              <th>Action</th>
+             </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>  
+              <input type="text" class="form-control" name="yarn" value="<%= selectedYarn.yarn%>" />
+            </td>
+
+            <td>
+              <input type="text" class="form-control" name="mill" value="<%= selectedYarn.mill%>" />
+            </td>
+
+            <td>  
+              <input type="text" class="form-control" name="color" value="<%= selectedYarn.color%>" />
+            </td>
+
+            <td>
+                <input type="number" class="form-control" name="weight" placeholder="enter yarnweight" value="<%= selectedYarn.weight%>" required>
+            </td>
+
+            <td><button class="btn btn-primary" type="submit" name="button">Update Yarn</button></td>
+          </tr>
+         </tbody>
+       </table>
+    </form>
+    </div>

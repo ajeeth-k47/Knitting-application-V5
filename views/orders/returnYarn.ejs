@@ -1,0 +1,108 @@
+<div id="viewtab" style="width:75%;">
+
+    <h3>Return Yarn</h3>
+    <br />
+    <h6>Order Information</h6>
+    <table class="styled-table">
+
+      <thead>
+          <tr>
+              <th>Seq no</th>
+              <th>Order No</th>
+              <th>Company Name</th>
+              <th>Order Date</th>
+              <th>Supplier</th>
+              <th>Yarn Count| Mill| Colors| Weight</th>
+              <th>Yarn Weight</th>
+              <th>Balance Weight</th>
+   
+          </tr>
+      </thead>
+      <tbody>
+    <% choosenOrders.forEach(function(order,index) { %>
+      <% const neworderDate = (order.orderDate).getDate()+"-"+((order.orderDate).getMonth()+1)+"-"+(order.orderDate).getFullYear();%>
+      <tr>
+         <td><%= index+1%></td>
+         <td><%= order.orderNo%></td>
+         <td><%= order.company%></td>
+         <td><%= neworderDate%></td>
+         <td><%= order.supplier%></td>
+         <td>
+         <% order.yarnCount.forEach(function(yarns,index){%>
+           <p><%= yarns.yarn%>|<%=yarns.mill%>|<%= yarns.color%>|<%= yarns.weight%></p>
+         <% }) %> 
+         </td>
+         <td><%= order.yarnWeight%></td>
+         <td><%= order.balanceWeight%></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  </table>
+
+    <br />
+<form method="POST" action="/api/v1/order/returnYarn" >
+  <div class="row">
+
+    <div class="col-lg-2">
+     <label for="name">Return Yarn</label>
+    </div>
+    <div class="col-lg-8">
+     <input class="form-control" type="number" name="weight" value="" placeholder="Enter Yarn Weight" required />
+    </div>
+
+  </div>
+ <br />
+  <div class="row">
+
+    <div class="col-lg-2">
+     <label for="name">Reason to Return</label>
+    </div>
+    <div class="col-lg-8">
+     <textarea class="form-control" rows="3" cols="50" name="reason" value="" placeholder="Enter a valid reason" required ></textarea>
+    </div>
+
+  </div>
+  <br />
+  <input type="hidden" name="orderNum" value="<%= choosenOrders[0].orderNo %>" />
+
+  <div class="row">
+    <div class="col-lg-2">
+        <button class="btn btn-info back"><a class="back"  href="/api/v1/order/orderlist">Back</a></button>
+    </div>
+
+    <div class="col-lg-3">
+      <input type="submit" class="btn btn-info" name="" value="Return Yarn" />
+    </div>
+
+</form>
+
+
+</div>
+ <br />
+ <br />
+<h6>ReturnYarn Information</h6>
+<table class="styled-table">
+
+  <thead>
+      <tr>
+          <th>Seq no</th>
+          <th>Order No</th>
+          <th>Return Weight</th>
+          <th>Return Date</th>
+          <th>Reason</th>
+      </tr>
+  </thead>
+  <tbody>
+<% returns.forEach(function(yarnreturn,index) { %>
+  <tr>
+     <td><%= index+1%></td>
+     <td><%= yarnreturn.orderNo%></td>
+     <td><%= yarnreturn.returnWeight%></td>
+     <td><%= yarnreturn.returnDate%></td>
+     <td><%= yarnreturn.reason%></td>
+  </tr>
+<% }) %>
+</tbody>
+</table>
+
+</div>

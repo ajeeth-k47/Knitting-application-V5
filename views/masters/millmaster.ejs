@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+     <h3>Mill Master</h3>
+
+     <form method="POST" action="/api/v1/master/mill">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Mill</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="mill" placeholder="enter Mill" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Mill</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="millmaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Mill</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(mills!=''){ %>
+      <% mills.forEach(function(mill,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= mill.Mill%></td>
+          <td><%= mill.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+    </tbody>
+
+    </table>
+
+    </div>

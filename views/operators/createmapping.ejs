@@ -1,0 +1,69 @@
+<div id="viewtab">
+
+     <h3>Create Operator-Machine Mapping</h3>
+
+     <br />
+
+     <form method="POST" action="/api/v1/operator/operatormapping">
+
+       <div class="row">
+
+         <div class="col-md-4">
+           <label for="day"><b>Date</b></label>
+           <input class="form-control" type="date" name="workdate" value="" required />
+         </div>
+
+         <div class="col-md-4">
+           <label for="shift"><b>Shift</b></label>
+           <select name="shift" class="form-control" required>
+              <option>Day Shift</option>
+              <option>Night Shift</option>
+           </select>
+         </div>
+
+       </div>
+
+       <br />
+       <br />
+
+       <table class="styled-table">
+
+         <thead>
+            <tr>
+             <th>Operator</th>
+             <th>Machine</th>
+             <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+         <tr>
+
+           <td>
+           <select name="operator" class="form-control" required>
+            <% operators.forEach(function(operator,index){ %>
+               <option><%= operator.Name%></option>
+            <% }) %>
+           </select>
+           </td>
+
+           <td>
+           <select name="machine" class="form-control" required>
+            <% machines.forEach(function(machine,index){ %>
+               <option><%= machine.MachineName%></option>
+            <% }) %>
+           </select>
+           </td>
+
+           <td><button class="btn btn-primary" type="submit" name="button">+ Add Mapping</button></td>
+
+         </tr>
+
+        </tbody>
+
+      </table>
+
+      </form>
+
+</div>

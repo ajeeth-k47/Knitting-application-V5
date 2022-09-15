@@ -1,0 +1,63 @@
+<div id="viewtab">
+
+    <h3>Add Yarn to Orders</h3>
+    <br />
+    <form method="POST" action="/api/v1/order/updateYarn">
+      <br />
+      <div>
+
+        <div>
+         <label for="order">Order No : <b><%= orderno%></b></label>
+        </div>
+       
+        <input type="hidden" name="orderNumber" value="<%= orderno%>" />
+
+      </div>
+
+       
+        <table class="styled-table">
+          <thead>
+             <tr>
+              <th>Yarn Count</th>
+              <th>Mill</th>
+              <th>Color</th>
+              <th>Weight</th>
+              <th>Action</th>
+             </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>  
+              <select name="yarncount" class="form-control" required>
+                <% yarncounts.forEach(function(yarncount,index){ %>
+                   <option><%= yarncount.YarnCount%></option>
+                <% }) %>
+              </select>
+            </td>
+
+            <td>
+                <select name="mill" class="form-control" required>
+                    <% mills.forEach(function(mill,index){ %>
+                       <option><%= mill.Mill%></option>
+                    <% }) %>
+                </select>
+            </td>
+
+            <td>  
+               <select name="colour" class="form-control" required>
+                  <% colors.forEach(function(color,index){ %>
+                     <option><%= color.Color%></option>
+                  <% }) %>
+                </select>
+            </td>
+
+            <td>
+                <input type="number" class="form-control" name="weight" placeholder="enter yarnweight" required>
+            </td>
+
+            <td><button class="btn btn-primary" type="submit" name="button">Update Yarn</button></td>
+          </tr>
+         </tbody>
+       </table>
+    </form>
+    </div>

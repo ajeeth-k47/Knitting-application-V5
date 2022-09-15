@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+     <h3>Company Master</h3>
+         <br />
+         <form method="POST" action="/api/v1/master/create">
+         <input type="hidden" name="mastername" value="Company" />
+         <button class="btn btn-info" type="submit" name="button">+Create New Company</button>
+         </form>
+         <br />
+         <br />
+         <form method="POST" action="/api/v1/master/search">
+
+          <input type="hidden" name="page" value="companymaster" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+         </form>
+
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Company Name</th>
+             <th>Address</th>
+             <th>Status</th>
+             <th>Action</th>
+         </tr>
+     </thead>
+
+     <tbody>
+
+       <% if(companies!=''){ %>
+        <% companies.forEach(function(company,index) { %>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= company.Name%></td>
+            <td><%= company.Address1+","+company.Address2+","+company.City+",-"+company.Pincode%></td>
+            <td>Active</td>
+          <form method="POST" action="/api/v1/master/update">
+            <input type="hidden" name="mastername" value="Company" />
+            <input type="hidden" name="id" value=<%= company.id%> />
+            <input type="hidden" name="name" value="<%= company.Name%>" />
+            <td><button type="submit"><i class="fas fa-edit"></i></button></td>
+          </form>
+         </tr>
+       <% }) %>
+      <% } %>
+
+    </tbody>
+
+    </table>
+
+    </div>

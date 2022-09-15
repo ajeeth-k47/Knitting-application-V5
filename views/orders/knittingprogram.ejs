@@ -1,0 +1,164 @@
+<div id="viewtab" style="width:85%;">
+
+    <h3>Knitting Program</h3>
+    <hr />
+
+    <div class="statusdisplayer">
+     <h6 style="display:inline-block;padding-right:20px;">colour status</h6>
+     <span><i class="fas fa-circle" style="color:rgb(226, 143, 147);"> </i> Pending Program</span>
+     <span><i class="fas fa-circle" style="color:rgb(235, 241, 128);"> </i> Completed Program</span>
+     <span><i class="fas fa-circle" style="color:rgb(143, 226, 169);"> </i> Delivered Program</span>
+   </div>
+        <br />
+        <form method="POST" action="/api/v1/order/searchByKnittingfeatures">
+
+          <div class="row">
+            <div class="col-md-2">
+              <label for="for supplier"><b>Supplier</b></label>
+              <select name="supplier" class="form-control" >
+                <option value="">All Suppliers</option>
+                <% suppliers.forEach(function(supplier,index){ %>
+                   <option><%= supplier.Name%></option>
+                <% }) %>
+               </select>
+            </div>
+            <div class="col-md-2">
+                <label for="for dia"><b>Dia</b></label>
+                <select name="dia" class="form-control" >
+                  <option value="">All Dia</option>
+                  <% dias.forEach(function(dia,index){ %>
+                    <option><%= dia.Dia%></option>
+                 <% }) %>
+                 </select>
+            </div>
+              <div class="col-md-2">
+                <label for="for fabric"><b>FabricType</b></label>
+                <select name="fabric" class="form-control" >
+                  <option value="">All Fabrics</option>
+                  <% fabrics.forEach(function(fabric,index){ %>
+                    <option><%= fabric.FabricType%></option>
+                 <% }) %>
+                 </select>
+            </div>
+            <div class="col-md-2">
+              <label for="programfrom"><b>ProgramDate</b></label>
+              <input class="form-control" type="date" name="fromdate" value="" required  pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <label for="programtill"></label>
+              <input class="form-control" type="date" name="todate" value="" required pattern="\d{4}-\d{2}-\d{2}" />
+            </div>
+            <div class="col-md-2 mapping-button">
+              <br />
+              <input type="submit" class="btn btn-info" name="" value="Show Details" />
+            </div>
+          </div>
+
+       </form>
+       <br />
+       <br />
+        <form method="POST" action="/api/v1/order/searchbysupplier">
+
+         <input type="hidden" name="page" value="programlist" />
+         <input class="form-control me-2" name="programlist" type="search" placeholder="Search by supplier..." aria-label="Search">
+
+        </form>
+
+<div class="FixedHeader">
+    <table class="styled-table">
+
+    <thead>
+        <tr>
+            <th>Seq no</th>
+            <th>Program No</th>
+            <th>DC.No</th>
+            <th>Program Date</th>
+            <th style="width:10px;">Diff days</th>
+            <th>Supplier</th>
+            <th>FabricType</th>
+            <th>Dia</th>
+            <th>Price PerKg</th>
+            <th>Weight</th>
+            <th style="width:8px;">Produced Rolls</th>
+            <th style="width:8px;">Produc tionWgt</th>
+            <th style="width:8px;">Balance weight</th>
+            <th>Action</th>
+            <th>Delivered Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <% if(programs!=''){ %>
+        <% programs.forEach(function(program,index) { %>      
+           <%
+              const newProgramDate = (program.programDate).getDate()+"-"+((program.programDate).getMonth()+1)+"-"+(program.programDate).getFullYear();
+              const darray = newProgramDate.split("-");
+              const date1 = new Date((darray[1]+"/"+darray[0]+"/"+darray[2]));
+              const date2 = new Date();
+              const diffTime = Math.abs(date2 - date1);
+              const diffDays = (Math.ceil(diffTime / (1000 * 60 * 60 * 24)))-1; %>
+
+       <% if(diffDays<=0 && program.balance!=0) {%>
+         <tr>
+       <%}%>
+       <% if(diffDays>=10 && program.balance!=0) {%>
+        <tr style="background-color: rgba(226, 60, 69, 0.3);">
+      <%}%>
+      <% if(program.balance==0 && program.deliveryStatus=='N') {%>
+        <tr style="background-color: rgba(255,217,0,.3);">
+      <%}%>
+      <% if(program.balance==0 && program.deliveryStatus=='Y') {%>
+        <tr style="background-color: rgb(143, 226, 169);">
+      <%}%>
+            <td><%= index+1%></td>
+            <td><%= program.programNo %></td>
+            <td><%= program.designNo %></td>
+            <td><%= newProgramDate %></td>
+            <td>-<%=  diffDays %></td>
+            <td><%= program.supplier%></td>
+            <td><span><%= program.fabricType%></span></td>
+            <td><%= program.dia%></td>
+            <td><%= program.price%></td>
+            <td><%= program.Weight%></td>
+            <td style="background-color:#95bce3;"><%= program.rolls%></td>
+            <td><%= program.production %></td>
+            <td><%= program.balance%></td>
+            
+            <td>
+              <form method="POST" action="/api/v1/order/add_rolls">
+                <input type="hidden" name="designNumber" value="<%= program.designNo%>" />
+                <input type="hidden" name="programNumber" value="<%= program.programNo%>" />
+                <input type="hidden" name="orderNumber" value="<%= program.orderNo%>" />
+                <input type="hidden" name="balanceWgt" value="<%= program.balance%>" />
+                <% if(program.balance != 0) {%>
+                <button class="btn-info" type="submit" title="add rolls"><i class='fad fa-save'></i></button>
+                <%}%>
+                <% if(program.deliveryStatus!='Y'){%>
+                <button class="btn btn-danger btn-sm" type="submit" title="Deliver rolls" formaction="/api/v1/order/deliverProgram"><i class="fas fa-truck"></i></button>
+                <%}%>
+                <button class="btn-dark" type="submit" title="view rolls" formaction="/api/v1/order/view_rolls"><i class='fas fa-eye'></i></button>
+            </form>
+             </td>
+             <td>
+              <form method="POST" action="/api/v1/order/view_deliveries">
+                <input type="hidden" name="programId" value="<%= program.programNo%>" />
+                <input type="hidden" name="suppliername" value="<%= program.supplier%>" />
+                <input type="hidden" name="ordernumber" value="<%= program.orderNo%>" />
+                <input type="hidden" name="prgWeight" value="<%= program.Weight%>" />
+                <input type="hidden" name="pricePerkg" value="<%= program.price%>" />
+                <input type="hidden" name="prgtax" value="<%= program.tax%>" />
+                <button class="btn-primary" type="submit" title="view deliveries"><i class='fad fa-eye'></i></button>
+                <% if(program.balance == 0 && program.deliveryStatus=='Y' ) {%>
+                <button class="btn-info" type="submit" title="Billing" formaction="/api/v1/order/billing"><i class="fas fa-ballot"></i></button>
+                <%}%>
+              </form>
+             </td>
+         </tr>
+         <% }) %>
+         <% } %>
+   </tbody>
+
+   </table>
+   </div>
+
+   </div>

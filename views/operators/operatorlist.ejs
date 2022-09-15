@@ -1,0 +1,64 @@
+<div id="viewtab" style="width:75%;">
+
+     <h3>Operators List</h3>
+         <br />
+         <form method="POST" action="/api/v1/operator/create">
+         <button class="btn btn-info" type="submit" name="button">+Create New Operator</button>
+         </form>
+         <br />
+         <br />
+         <form method="POST" action="/api/v1/operator/search">
+
+          <input type="hidden" name="page" value="operatorlist" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+         </form>
+
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Code</th>
+             <th>Name</th>
+             <th>Gender</th>
+             <th>DOB</th>
+             <th>Age</th>
+             <th>DOJ</th>
+             <th>AadhaarNo</th>
+             <th>MobileNo</th>
+             <th>Status</th>
+             <th>Action</th>
+         </tr>
+     </thead>
+
+     <tbody>
+
+       <% if(operators!=''){ %>
+        <% operators.forEach(function(operator,index) { %>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= operator.Code%></td>
+            <td><%= operator.Name%></td>
+            <td><%= operator.Gender%></td>
+            <td><%= operator.DOB%></td>
+            <td><%= operator.Age%></td>
+            <td><%= operator.DOJ%></td>
+            <td><%= operator.AadhaarNo%></td>
+            <td><%= operator.MobileNo%></td>
+            <td><%= operator.Status%></td>
+          <form method="POST" action="/api/v1/operator/update">
+            <input type="hidden" name="code" value=<%= operator.Code%> />
+            <input type="hidden" name="name" value="<%= operator.Name%>" />
+            <td><button type="submit"><i class="fas fa-edit"></i></button></td>
+          </form>
+         </tr>
+       <% }) %>
+      <% } %>
+
+    </tbody>
+
+    </table>
+
+    </div>

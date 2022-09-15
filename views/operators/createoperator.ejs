@@ -1,0 +1,116 @@
+<div id="viewtab">
+
+     <h3>Enter Operator Info</h3>
+
+     <br />
+
+     <form method="POST" action="/api/v1/operator/operatorlist">
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Operator ID</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="id" value="" placeholder="Please enter Unique ID" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name"> Name</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="name" value="" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Gender</label>
+         </div>
+         <div class="col-lg-7">
+           <select name="gender" class="form-control" required>
+              <option>Male</option>
+              <option>Female</option>
+           </select>
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">DOB</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="date" name="DOB" value="" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">DOJ</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type="date" name="DOJ" value="" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Aadhaar No</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="Aadhaar" value="" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Mobile No</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type=number name="mobile" value="" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Status</label>
+         </div>
+         <div class="col-lg-7">
+           <select name="status" class="form-control" required>
+              <option>Active</option>
+              <option>Deactive</option>
+           </select>
+         </div>
+
+       </div>
+
+       <br />
+
+       <div class="row">
+
+          <div class="col-lg-3">
+
+          </div>
+          <div class="col-lg-7">
+           <input type="submit" class="btn btn-lg btn-info" name="" value="Save" />
+          </div>
+
+       </div>
+     </form>
+
+</div>

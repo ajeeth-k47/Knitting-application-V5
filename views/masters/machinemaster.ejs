@@ -1,0 +1,76 @@
+<div id="viewtab">
+
+     <h3>Machine Master</h3>
+
+     <form method="POST" action="/api/v1/master/machine">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Name</th>
+           <th>Dia</th>
+           <th>Gauge</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="name" placeholder="Machine Name" required></td>
+         <td>
+         <select name="dia" class="form-control" required>
+          <% dias.forEach(function(dia,index){ %>
+             <option><%= dia.Dia%></option>
+          <% }) %>
+         </select>
+         </td>
+         <td>
+         <select name="gauge" class="form-control" required>
+          <% gauges.forEach(function(gauge,index){ %>
+             <option><%= gauge.Gauge%></option>
+          <% }) %>
+         </select>
+         </td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Machine</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+    <form method="POST" action="/api/v1/master/search">
+
+     <input type="hidden" name="page" value="machinemaster" />
+     <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+    </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Generated Machine Name</th>
+             <th>Name</th>
+             <th>Dia</th>
+             <th>Gauge</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(machines!=''){ %>
+      <% machines.forEach(function(machine,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= machine.MachineName%></td>
+          <td><%= machine.Name%></td>
+          <td><%= machine.Dia%></td>
+          <td><%= machine.Gauge%></td>
+          <td><%= machine.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+    </tbody>
+
+    </table>
+
+    </div>

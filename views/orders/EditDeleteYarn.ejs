@@ -1,0 +1,54 @@
+<div id="viewtab">
+
+    <h3>Edit/Delete Yarn</h3>
+    <br />
+    <% if(order[0].yarnCount.length!=0){ %>  
+      <br />
+    
+      <div>
+
+        <div>
+         <label for="order">Order No : <b><%= order[0].orderNo%></b></label>
+        </div>
+       
+        
+
+      </div>
+
+       
+        <table class="styled-table">
+          <thead>
+             <tr>
+              <th>Yarn Count</th>
+              <th>Mill</th>
+              <th>Color</th>
+              <th>Weight</th>
+              <th>Action</th>
+             </tr>
+         </thead>
+         <tbody>
+         <% order[0].yarnCount.forEach(function(yarns,index){%>
+          <tr>
+            <td><%= yarns.yarn%></td>
+            <td><%=yarns.mill%></td>
+            <td><%= yarns.color%></td>
+            <td><%= yarns.weight%></td>
+            <form method="POST" action="/api/v1/order/editYarn">
+            <td>
+                <input type="hidden" name="orderNumber" value="<%= order[0].orderNo%>" />
+                <input type="hidden" name="indexNumber" value="<%= index%>" />
+                <button type="submit" formaction="/api/v1/order/editYarn"><i class="fas fa-edit"></i></button>
+                <button type="submit" formaction="/api/v1/order/deleteYarn"><i class="fas fa-trash"></i></button>
+            </td>
+          </form>
+          </tr>
+        <% }) %> 
+        
+         </tbody>
+       </table>
+       <% } %>
+       <% if(order[0].yarnCount.length==0){ %>  
+        <br />
+        <p style="text-align: center;">No yarns available.</p>
+       <%}%>
+    </div>

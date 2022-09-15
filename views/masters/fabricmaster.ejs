@@ -1,0 +1,63 @@
+<div id="viewtab">
+
+     <h3>Fabric Type Master</h3>
+
+
+     <form method="POST" action="/api/v1/master/fabric">
+     <table class="styled-table">
+       <thead>
+          <tr>
+           <th>Fabric Type</th>
+           <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+       <tr>
+         <td> <input type="text" class="form-control" name="fabric" placeholder="enter fabrics type" required></td>
+         <td><button class="btn btn-primary" type="submit" name="button">+ Add Fabric</button></td>
+       </tr>
+      </tbody>
+    </table>
+    </form>
+    <br /><br />
+
+
+         <form method="POST" action="/api/v1/master/search">
+
+          <input type="hidden" name="page" value="fabricmaster" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search..." aria-label="Search">
+
+         </form>
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Fabric Type</th>
+            <th>Status</th>
+         </tr>
+     </thead>
+
+     <tbody>
+     <% if(fabrics!=''){ %>
+      <% fabrics.forEach(function(fabric,index) { %>
+       <tr>
+          <td><%= index+1%></td>
+          <td><%= fabric.FabricType%></td>
+          <td><%= fabric.Status%></td>
+       </tr>
+     <% }) %>
+    <% } %>
+
+    <% if(fabrics=='') { %>
+      <tr>
+         <td>No records found</td>
+      </tr>
+    <% } %>
+
+    </tbody>
+
+    </table>
+
+    </div>

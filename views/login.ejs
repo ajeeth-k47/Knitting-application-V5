@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Vinayaka Fabrics</title>
+
+
+
+    <!-- get the link from "https://getbootstrap.com/docs/3.3/getting-started/" -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <!--my styles-->
+    <style>
+     #container{
+       min-height: 100vh;
+     } 
+     .left{
+      height: 100vh;
+      width:50vw;
+      position:relative;
+      display:inline-block;
+      background-repeat: no-repeat;
+      background-size: cover;
+     }
+     .right{
+            height: 100vh;
+            width: 50vw;
+            position:absolute;
+            background-color: darkgrey;
+            display:inline-block;
+            align-items: center;
+            vertical-align: middle;
+            justify-content: center;
+        }
+     .login-form{
+       position:relative;
+       top:30%;
+       margin:2% 20% 10% 20%;
+       padding:20px;
+       border-radius: 20px;
+     }
+     .login-header{
+       margin-bottom: 20px;
+       font-family:  -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+     }
+    
+    
+  
+     
+        input[type=text], input[type=password]
+        {
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid rgb(10, 9, 9); 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            margin-top: 6px; 
+            margin-bottom: 20px; 
+            font-family: Space Grotesk!important;
+            resize: vertical 
+        }
+        button, input[type=password]:hover{
+            border: 1px solid rgb(148, 39, 39); 
+        }
+        button {
+            width: 100%;
+            background-color:#398AB9;
+            color: white;
+            padding: 12px 20px;
+            font-family: Space Grotesk!important;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1C658C;
+            border: 1px solid #0059FF; 
+        }
+        .Error{
+            left: 0px;
+            color: #EA4435;
+            bottom: -18px;
+            position: absolute;
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+        @media (max-width:900px){
+          .right{
+            width:100vw;
+          }
+          .left{
+            width:0vw;
+            height:0vh;
+          }
+        }
+    </style>
+    <script>
+      function randompic(){
+        
+        var x=Math.floor(Math.random()*5)+1;
+        document.getElementsByClassName("left")[0].style.backgroundImage="url('\/images\/image"+x+".jpg')";
+
+      }
+    </script>
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- scripts file-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body onload="randompic()">
+
+
+
+    <div id="container">
+      <div class="left">
+    
+      </div>
+      <div class="right">
+       
+      <form class="login-form"  action="/" method="post">
+        <h3 class="login-header">Vinayaka Fabrics</h3>
+
+        <% if(validuser==="no"){ %>
+        <p style="color:white;">
+          <i class='fas fa-exclamation-triangle' style='font-size:24px;color:yellow'></i> 
+          <b>Incorrect username or password</b>
+        </p>  <% } %>
+        <div class="n">
+           
+        <input type="text" placeholder="Username" name="username" id="name" required> 
+        
+        <span id="error" style="display: none">
+            Username Required
+        </span>
+        </div>
+        <div class="n">
+        <input type="password" placeholder="Password" name="password" id="password" required>
+     
+        <span class="error1" style="display: none">
+            Password Required
+        </span>
+        </div>
+        <button type="submit" placeholder="Login" name="submit" id="submit">Login</button>
+    </div>
+</form>
+      </div>
+    </div>
+
+  </body>
+</html>

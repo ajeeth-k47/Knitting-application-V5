@@ -1,0 +1,128 @@
+<div id="viewtab">
+
+     <h3>Edit Operator Info</h3>
+
+     <br />
+
+     <form method="POST" action="/api/v1/operator/updateOperator">
+       <input type="hidden" name="updatedforid" value="<%= detail.Code%>" />
+       <input type="hidden" name="updatedforname" value="<%= detail.Name%>" />
+
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Operator ID</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="id" value="<%= detail.Code%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name"> Name</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="name" value="<%= detail.Name%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Gender</label>
+         </div>
+         <div class="col-lg-7">
+           <input class="form-control" type="text" name="gender" value="<%= detail.Gender%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">DOB</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="DOB" value="<%= detail.DOB%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Age</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="Age" value="<%= detail.Age%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">DOJ</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type="text" name="DOJ" value="<%= detail.DOJ%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Aadhaar No</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control" type="text" name="Aadhaar" value="<%= detail.AadhaarNo%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Mobile No</label>
+         </div>
+         <div class="col-lg-7">
+          <input class="form-control"  type=number name="mobile" value="<%= detail.MobileNo%>" required />
+         </div>
+
+       </div>
+       <br />
+       <div class="row">
+
+         <div class="col-lg-3">
+          <label for="name">Status</label>
+         </div>
+         <div class="col-lg-7">
+            <input class="form-control"  type="text" name="status" value="<%= detail.Status%>" required />
+         </div>
+
+       </div>
+
+       <br />
+
+       <div class="row">
+
+
+          <div class="col-lg-3">
+           <input type="submit" class="btn btn-lg btn-info" name="" value="Update" />
+          </div>
+
+
+     </form>
+
+     <div class="col-lg-7">
+          <button class="btn btn-lg btn-info"><a class="back" href="/api/v1/operator/operatorlist">Back</a></button>
+     </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div id="viewtab">
+
+     <h3>Operators Machine Mapping</h3>
+         <br />
+         <form method="POST" action="/api/v1/operator/createmapping">
+         <button class="btn btn-info" type="submit" name="button">+Add Operator Machine Mapping</button>
+         </form>
+         <br />
+         <br />
+         <form method="POST" action="/api/v1/operator/searchbydate">
+
+           <div class="row">
+             <div class="col-md-4">
+               <label for="date"><b>Date</b></label>
+               <input class="form-control" type="date" name="workdate" value="" required />
+             </div>
+             <div class="col-md-4">
+               <label for="shift"><b>Shift</b></label>
+               <select name="shift" class="form-control" required>
+                  <option>Day Shift</option>
+                  <option>Night Shift</option>
+               </select>
+             </div>
+             <div class="col-md-4 mapping-button">
+               <br />
+               <input type="submit" class="btn btn-info" name="" value="Show Details" />
+             </div>
+           </div>
+
+        </form>
+        <br />
+        <br />
+         <form method="POST" action="/api/v1/operator/search">
+
+          <input type="hidden" name="page" value="operatormapping" />
+          <input class="form-control me-2" name="name" type="search" placeholder="Search by operator..." aria-label="Search">
+
+         </form>
+
+
+     <table class="styled-table">
+
+     <thead>
+         <tr>
+             <th>Seq no</th>
+             <th>Operator</th>
+             <th>Machine</th>
+             <th>Date</th>
+         </tr>
+     </thead>
+
+     <tbody>
+       <% if(values!=''){ %>
+        <% values.forEach(function(value,index) { %>
+         <tr>
+            <td><%= index+1%></td>
+            <td><%= value.Name%></td>
+            <td><%= value.Machine%></td>
+            <td><%= value.Date%></td>
+         </tr>
+        <% }) %>
+      <% } %>
+    </tbody>
+
+    </table>
+
+    </div>
