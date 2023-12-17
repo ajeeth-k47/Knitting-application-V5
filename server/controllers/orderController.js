@@ -788,7 +788,7 @@ exports.addBilling = async(req,res) => {
     const prgWeight= Number(req.body.prgWeight);
     const pricePerkg= Number(req.body.pricePerkg);
     let price = pricePerkg * prgWeight ;
-    let ServiceTax = (price * Number((req.body.prgtax).split('%TAX')[0])/100).toFixed(2);
+    let ServiceTax = (price * Number((req.body.prgtax).split('%GST')[0])/100).toFixed(2);
     let TotalPrice = price + (ServiceTax*2);
     const newBill = await billinglist({
       
@@ -901,7 +901,7 @@ exports.viewBilling = async(req,res) =>{
     const program = await programlist.find({programNo:req.body.programId})
     const deliveredlist = await deliveredProgramlist.find({programNo:req.body.programId});
     let price = program[0].price * program[0].Weight ;
-    let ServiceTax = (price * Number((program[0].tax).split('%TAX')[0])/100).toFixed(2);
+    let ServiceTax = (price * Number((program[0].tax).split('%GST')[0])/100).toFixed(2);
     let TotalPrice = price + (ServiceTax*2);
 
     //---------------------------Rupees in words implementation----------------------------------
