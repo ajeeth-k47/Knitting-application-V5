@@ -27,8 +27,9 @@ After designing the prototype of the application based on the knitting process f
 
 ### Deployment, Test, Integration and DEMO.
 
-Following the implementation of each feature according to user requirements, I proceeded to deploy and thoroughly test the code to identify and address potential bugs. Utilizing Postman, I conducted API testing and seamlessly integrated my implementation onto the Heroku cloud server. Subsequently, I conducted a demonstration with the client, gathered valuable feedback, and discussed any new requirements for additional features. This iterative development process continued until the final application was achieved, encompassing all desired features.
+Following the implementation of each feature according to user requirements, I proceeded to deploy and thoroughly test the code to identify and address potential bugs. Utilizing Postman, I conducted API testing and seamlessly integrated my implementation onto the Render cloud server. Subsequently, I conducted a demonstration with the client, gathered valuable feedback, and discussed any new requirements for additional features. This iterative development process continued until the final application was achieved, encompassing all desired features.
 
+Visit site here : https://knitting-management.onrender.com/
 
 Attachment of sample UI pages populated with DUMMY DATA
 
